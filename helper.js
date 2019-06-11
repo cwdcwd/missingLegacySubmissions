@@ -21,14 +21,14 @@ const writeToCSV = async (records, fileName) => {
       id: 'legacySubmissionId',
       title: 'legacySubmissionId'
     }, {
+      id: 'challengeId',
+      title: 'challengeId'
+    }, {
       id: 'memberId',
       title: 'memberId'
     }, {
       id: 'url',
       title: 'url'
-    }, {
-      id: 'challengeId',
-      title: 'challengeId'
     }, {
       id: 'submissionPhaseId',
       title: 'submissionPhaseId'
