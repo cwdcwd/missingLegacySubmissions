@@ -11,10 +11,9 @@ AWS.config.update({
 
 const docClient = new AWS.DynamoDB.DocumentClient();
 
-const writeToCSV = async (records) => {
+const writeToCSV = async (records, fileName) => {
   const csvWriter = createCsvWriter({
-    path: `${__dirname}/../../submissions/aggregate.csv`,
-    append: true,
+    path: fileName,
     header: [{
       id: 'id',
       title: 'id'
@@ -31,6 +30,15 @@ const writeToCSV = async (records) => {
       id: 'challengeId',
       title: 'challengeId'
     }, {
+      id: 'submissionPhaseId',
+      title: 'submissionPhaseId'
+    }, {
+      id: 'fileType',
+      title: 'fileType'
+    }, {
+      id: 'type',
+      title: 'type'
+    }, {
       id: 'createdBy',
       title: 'createdBy'
     }, {
@@ -45,8 +53,8 @@ const writeToCSV = async (records) => {
     }]
   })
 
-  logger.debug(`writing row to CSV ${records}`)
-  return csvWriter.writeRecords([records]) // returns a promise
+  console.debug(`writing data to CSV: ${records.length} records`)
+  return csvWriter.writeRecords(records) // returns a promise
 }
 
 
