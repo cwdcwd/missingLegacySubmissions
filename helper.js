@@ -6,7 +6,7 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter
 AWS.config.update({
   region: "us-east-1",
   accessKeyId: config.AWSACCESSID,
-  secretAccessKey: config.AWSSECRET
+  secretAccessKey: config.AWSSECRETKEY
 });
 
 const docClient = new AWS.DynamoDB.DocumentClient();
@@ -103,9 +103,10 @@ const fetchMissingRecords= async () => {
         console.error('Unable to query. Error:', JSON.stringify(err, null, 2));
       });
 
-    console.log(`LEK: ${JSON.stringify(LEK)}`);
+    console.log(`LEK: ${_.get(LEK,'id','')}`);
   } while (LEK);
 
+  console.log('no more records');
   return missingData;
 }
 
